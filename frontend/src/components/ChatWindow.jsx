@@ -1,4 +1,4 @@
-function ChatWindow({ chat }) {
+function ChatWindow({ chat, messages }) {
   if (!chat) {
     return <div className="chat-window">Select a chat</div>;
   }
@@ -7,8 +7,8 @@ function ChatWindow({ chat }) {
     <div className="chat-window">
       <h3>{chat.name}</h3>
 
-      {chat.messages.map((msg, i) => (
-        <p key={i}>{msg}</p>
+      {messages.map((msg, i) => (
+        <p key={i}>{msg.user} :{msg.content}</p>
       ))}
     </div>
   );

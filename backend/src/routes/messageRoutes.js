@@ -11,7 +11,6 @@ router.get("/channels", async (req, res) => {
 
 router.get("/messages/:channelId", async (req, res) => {
   const messages = await getMessages(req.params.channelId);
-
   const normalized = messages.map(normalizeSlackMessage);
 
   res.json(normalized);

@@ -1,25 +1,11 @@
-export const getChats = async () => {
-  return [
-    {
-      id: 1,
-      name: "Arnav",
-      platform: "Instagram",
-      lastMessage: "Hello bro",
-      messages: ["Hello bro", "How are you?"]
-    },
-    {
-      id: 2,
-      name: "Team",
-      platform: "WhatsApp",
-      lastMessage: "Meeting at 5",
-      messages: ["Meeting at 5", "Don't be late"]
-    },
-    {
-      id: 3,
-      name: "Dev Group",
-      platform: "Telegram",
-      lastMessage: "Update done",
-      messages: ["Update done", "Check now"]
-    }
-  ];
+const BASE_URL = "http://localhost:5000/api";
+
+export const getChannels = async () => {
+  const res = await fetch(`${BASE_URL}/channels`);
+  return res.json();
+};
+
+export const getMessages = async (channelId) => {
+  const res = await fetch(`${BASE_URL}/messages/${channelId}`);
+  return res.json();
 };
