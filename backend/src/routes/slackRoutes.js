@@ -1,8 +1,8 @@
-const express = require("express");
-const router = express.Router();
+import express from "express";
+import {getChannels,getMessages} from "../services/slackService.js";
+import normalizeSlackMessage  from "../utils/slacknormalizeMessage.js";
 
-const { getChannels, getMessages } = require("../services/slackService");
-const { normalizeSlackMessage } = require("../utils/normalizeMessage");
+const router = express.Router();
 
 router.get("/channels", async (req, res, next) => {
   try {
@@ -14,7 +14,8 @@ router.get("/channels", async (req, res, next) => {
 });
 
 router.get("/messages/:channelId", async (req, res, next) => {
-  const channelId = req.params.channelId;
+  const channelId = req.params.channelId?.trim();
+  console.log("Fetching messages for channel:", channelId);
 
   try {
     const messages = await getMessages(channelId);
@@ -25,4 +26,4 @@ router.get("/messages/:channelId", async (req, res, next) => {
   }
 });
 
-module.exports = router;
+export default router;
