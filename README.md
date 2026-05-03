@@ -111,14 +111,36 @@ cd CommHub
 ### 2. Install dependencies
 
 ```bash
+cd backend
+npm install
+cd ../frontend
 npm install
 ```
 
-### 3. Run the development server
+### 3. Configure backend environment
+
+Create a `backend/.env` file with your Slack token:
 
 ```bash
-npm run dev
+SLACK_BOT_TOKEN=your_slack_bot_token
+PORT=5000
 ```
+
+### 4. Start the backend server
+
+```bash
+cd backend
+npm start
+```
+
+### 5. Start the frontend app
+
+```bash
+cd ../frontend
+npm run dev -- --host 0.0.0.0
+```
+
+Then open `http://localhost:5173/` in your browser.
 
 ---
 
