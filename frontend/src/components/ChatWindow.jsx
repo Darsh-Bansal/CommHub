@@ -8,7 +8,9 @@ function ChatWindow({ chat, messages }) {
       <h3>{chat.name}</h3>
 
       {messages.map((msg, i) => (
-        <p key={i}>{msg.user} :{msg.content}</p>
+        <p key={i}>
+          <strong>{msg.user}:</strong> {msg.content}
+        </p>
       ))}
     </div>
   );

@@ -1,11 +1,12 @@
-function Sidebar() {
+function Sidebar({ setFilter }) {
   return (
     <div className="sidebar">
       <h3>Inbox</h3>
-      <p>All</p>
-      <p>Instagram</p>
-      <p>WhatsApp</p>
-      <p>Telegram</p>
+
+      <p onClick={() => setFilter("All")}>All</p>
+      <p onClick={() => setFilter("Slack")}>Slack</p>
+      <p onClick={() => setFilter("Instagram")}>Instagram</p>
+      <p onClick={() => setFilter("WhatsApp")}>WhatsApp</p>
 
       <div className="settings">⚙ Settings</div>
     </div>
