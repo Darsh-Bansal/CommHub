@@ -1,13 +1,19 @@
-function Sidebar() {
+function Sidebar({ filter, setFilter }) {
+  const items = ["All", "Slack"];
+
   return (
     <div className="sidebar">
       <h3>Inbox</h3>
-      <p>All</p>
-      <p>Instagram</p>
-      <p>WhatsApp</p>
-      <p>Telegram</p>
 
-      <div className="settings">⚙ Settings</div>
+      {items.map((item) => (
+        <p
+          key={item}
+          onClick={() => setFilter(item)}
+          className={`sidebar-item ${filter === item ? "active" : ""}`}
+        >
+          {item}
+        </p>
+      ))}
     </div>
   );
 }

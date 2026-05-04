@@ -1,15 +1,35 @@
-function ChatWindow({ chat, messages }) {
-  if (!chat) {
-    return <div className="chat-window">Select a chat</div>;
-  }
+import { useEffect, useRef } from "react";
+
+function ChatWindow({ chat, messages, loading }) {
+  const bottomRef = useRef();
+
+  // auto scroll when messages update
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView();
+  }, [messages]);
+
+  if (!chat) return <div className="chat-window">Select a chat</div>;
 
   return (
     <div className="chat-window">
-      <h3>{chat.name}</h3>
 
-      {messages.map((msg, i) => (
-        <p key={i}>{msg.user} :{msg.content}</p>
-      ))}
+      {/* HEADER */}
+      <div className="chat-header">{chat.name}</div>
+
+      {/* MESSAGES */}
+      <div className="messages">
+        {loading ? <p>Loading...</p> : (messages.map((msg, i) => (
+            <div
+              key={i}
+              className={`message ${
+                msg.user === "You" ? "message-right" : "message-left"}`}
+            >
+              <b>{msg.user}</b>: {msg.content}
+            </div>
+          ))
+        )}
+        <div ref={bottomRef}></div>
+      </div>
     </div>
   );
 }
