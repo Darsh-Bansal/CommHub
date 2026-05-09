@@ -18,7 +18,7 @@ function ChatWindow({ chat, messages, loading }) {
 
       {/* MESSAGES */}
       <div className="messages">
-        {loading ? <p>Loading...</p> : ([messages].reverse().map((msg, i) => (
+        {loading ? <p>Loading...</p> : ([...messages].reverse().map((msg, i) => (
             <div key={i}>
               <b>{msg.user}</b>: {msg.content}
             </div>
